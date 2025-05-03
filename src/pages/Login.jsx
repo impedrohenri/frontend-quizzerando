@@ -1,54 +1,55 @@
 import { Card } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
+import SubmitButton from "../components/SubmitButton";
 import Form from 'react-bootstrap/Form';
+import LogoSideLayer from '../components/LogoSideLayer/LogoSideLayer';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 export default function Login() {
+    const navigate = useNavigate();
+    const [validated, setValidated] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const formData = new FormData(document.getElementById('formLogin'));
-        const data = Object.fromEntries(formData);
 
-        fetch('https://crudcrud.com/api/d224782836a34d989f53f30ea09bc2f4', {
-            method: 'POST',
-            body: data
-        })
-
-    }
+        setValidated(true);
+        navigate('/')
+    };
 
     return (
-        <div className='d-flex align-itens-center justify-content-center'>
-            <div className="d-flex align-items-center justify-content-center col-6 bg-primary vh-100">
-                <div>
-                    <img src='./logo.png' alt="logo" height={500} width={500} />
-                </div>
-            </div>
-            <div className="form-login-senha col-6 d-flex align-items-center justify-content-center">
+        <div className='d-flex flex-wrap vh-100 align-items-stretch w-100'>
+            <LogoSideLayer />
 
-            <Card style={{ width: '23rem' }} className='p-4'>
-                <Form id='formLogin'>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Email </Form.Label>
-                        <Form.Control name="email" type="email" placeholder="Digite o seu email" />
 
-                    </Form.Group>
+            <div className="form-login-senha col-12 col-md-7 d-flex flex-column align-items-center justify-content-center ">
 
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label>Senha</Form.Label>
-                        <Form.Control name='password' type="password" placeholder="Digite sua senha" />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Check me out" />
-                    </Form.Group>
-                    <Button variant="primary" className='mx-auto' type="submit">
-                        Entrar
-                    </Button>
-                </Form>
-            </Card>
-                
-                    
-             
+                <Card style={{ width: '23rem' }} className='p-4 bg-light border-light-subtle rounded-4'>
+                    <h4 className='text-center'>Realizar login</h4>
+
+                    <Form id='formLogin' noValidate validated={validated} onSubmit={handleSubmit} >
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Email </Form.Label>
+                            <Form.Control name="email" type="email" placeholder="Digite o seu email" required />
+
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label>Senha</Form.Label>
+                            <Form.Control name='password' type="password" placeholder="Digite sua senha" required />
+                        </Form.Group>
+
+                        <div className="d-flex justify-content-between align-items-bottom mt-4 pt-4">
+                            <Link to='/esqueceu-senha' className='mt-auto'><span>Esqueceu a senha?</span></Link>
+
+                            <SubmitButton value='Entrar' />
+                        </div>
+                    </Form>
+                </Card>
+                <p className='text-center mt-4'>Ainda não possui uma conta? <Link to='/cadastro'>Clique aqui</Link> para se cadastrar</p>
+
+
 
             </div>
         </div>

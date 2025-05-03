@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'react-router-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './pages/Login';
+import Cadastro from './pages/Cadastro';
 
 function App() {
 
@@ -11,9 +12,8 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          {/* Definindo as rotas */}
           <Route path="/login" element={<Login />} />
-          {/* Outras rotas podem ser adicionadas aqui */}
+          <Route path="/cadastro" element={<Cadastro />} />
         </Routes>
       </BrowserRouter>
     </div>

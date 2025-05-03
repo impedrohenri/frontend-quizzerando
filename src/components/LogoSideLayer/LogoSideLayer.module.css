@@ -1,0 +1,12 @@
+.background{
+    max-height: 70vw;
+    clip-path: ellipse(75% 100% at 23% 30%);
+    animation: moveClip 5s infinite alternate;
+}
+
+@media (max-width: 768px) {
+    .background {
+        clip-path: ellipse(100% 75% at 50% 20%);
+        animation: moveClipMobile 5s infinite alternate;
+    }
+}
