@@ -20,12 +20,12 @@ export default function Cadastro() {
             <LogoSideLayer />
 
 
-            <div className="form-login-senha col-12 col-md-7 d-flex align-items-center justify-content-center ">
+            <div className="form-cadastro col-12 col-md-7 d-flex align-items-center justify-content-center ">
 
                 <Card style={{ width: '23rem' }} className='p-4 bg-light border-light-subtle rounded-4'>
                     <h4 className='text-center'>Cadastre-se</h4>
 
-                    <Form id='formLogin' noValidate validated={validated} onSubmit={handleSubmit} >
+                    <Form id='formCadastro' noValidate validated={validated} onSubmit={handleSubmit} >
 
                         <Form.Group className="mb-3" controlId="formBasicNome">
                             <Form.Label>Nome </Form.Label>
@@ -56,9 +56,9 @@ export default function Cadastro() {
                                 </Button>
                             </Link>
 
-                            <Link to='/login'>
+                            
                                 <SubmitButton value='Cadastrar'/>
-                            </Link>
+                            
                         </div>
                     </Form>
                 </Card>
