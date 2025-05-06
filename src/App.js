@@ -7,7 +7,7 @@ import Cadastro from './pages/Cadastro';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import EsqueceuSenha from './pages/EsqueceuSenha';
-
+import Perfil from './pages/Perfil';
 function App() {
 
   return (
@@ -19,6 +19,7 @@ function App() {
           <Route path='/' element={<Home/>}/>
           <Route path="/esqueceu-senha" element={<EsqueceuSenha />}/>
           <Route path="*" element={<NotFound/>} />
+          <Route path="/perfil" element={<Perfil/>}/>
         </Routes>
       </BrowserRouter>
     </div>
