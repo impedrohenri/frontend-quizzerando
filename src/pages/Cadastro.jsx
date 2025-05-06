@@ -56,16 +56,11 @@ export default function Cadastro() {
                                 </Button>
                             </Link>
 
-                            
-                                <SubmitButton value='Cadastrar'/>
-                            
+                            <SubmitButton value='Cadastrar' />
+
                         </div>
                     </Form>
                 </Card>
-
-
-
-
             </div>
         </div>
     )

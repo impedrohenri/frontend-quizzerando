@@ -1,0 +1,561 @@
+[
+    {
+        "id": 1,
+        "titulo": "Quiz diferenciado 0202",
+        "descricao": "Esse quiz foi criado com o objetivo de ser muito diferenciado! XD",
+        "categoria": "Literatura",
+        "ativo": 1,
+        "userId": 345
+    },
+    {
+        "id": 2,
+        "titulo": "Desafio das Séries",
+        "descricao": "Acha que sabe tudo sobre séries famosas? Hora de provar!",
+        "categoria": "Entretenimento",
+        "ativo": 1,
+        "userId": 129
+    },
+    {
+        "id": 3,
+        "titulo": "Conhecimentos Gerais Express",
+        "descricao": "Um quiz rápido para testar seu conhecimento sobre o mundo!",
+        "categoria": "Ciências",
+        "ativo": 0,
+        "userId": 87
+    },
+    {
+        "id": 4,
+        "titulo": "Programação para Ninjas",
+        "descricao": "Só os bravos conseguem gabaritar esse quiz de lógica e código!",
+        "categoria": "Tecnologia",
+        "ativo": 1,
+        "userId": 231
+    },
+    {
+        "id": 5,
+        "titulo": "Maravilhas da Natureza",
+        "descricao": "Descubra se você conhece os segredos mais impressionantes da natureza!",
+        "categoria": "Geografia",
+        "ativo": 1,
+        "userId": 65
+    },
+    {
+        "id": 6,
+        "titulo": "Olimpíadas do Conhecimento",
+        "descricao": "Mistura de esportes, cultura e fatos históricos em um quiz eletrizante!",
+        "categoria": "Esportes",
+        "ativo": 1,
+        "userId": 92
+    },
+    {
+        "id": 7,
+        "titulo": "Revoluções que Mudaram o Mundo",
+        "descricao": "Um mergulho nos grandes movimentos históricos!",
+        "categoria": "História",
+        "ativo": 1,
+        "userId": 302
+    },
+    {
+        "id": 8,
+        "titulo": "Cinema na Veia",
+        "descricao": "Teste seu conhecimento sobre grandes filmes, diretores e trilhas sonoras.",
+        "categoria": "Entretenimento",
+        "ativo": 0,
+        "userId": 102
+    },
+    {
+        "id": 9,
+        "titulo": "Arte ou Fake?",
+        "descricao": "Você sabe reconhecer uma obra-prima de uma invenção maluca?",
+        "categoria": "Artes",
+        "ativo": 1,
+        "userId": 199
+    },
+    {
+        "id": 10,
+        "titulo": "Fake News Detector",
+        "descricao": "Teste sua habilidade de identificar notícias falsas!",
+        "categoria": "Atualidades",
+        "ativo": 1,
+        "userId": 254
+    },
+    {
+        "id": 11,
+        "titulo": "Do átomo ao universo",
+        "descricao": "Um passeio pelos mistérios da física e do cosmos.",
+        "categoria": "Ciências",
+        "ativo": 1,
+        "userId": 114
+    },
+    {
+        "id": 12,
+        "titulo": "Código Secreto",
+        "descricao": "Só quem entende lógica e programação vai passar!",
+        "categoria": "Tecnologia",
+        "ativo": 0,
+        "userId": 321
+    },
+    {
+        "id": 13,
+        "titulo": "Capitais do Mundo",
+        "descricao": "Você sabe onde fica cada capital? Descubra agora!",
+        "categoria": "Geografia",
+        "ativo": 1,
+        "userId": 56
+    },
+    {
+        "id": 14,
+        "titulo": "Quem escreveu isso?",
+        "descricao": "Associe obras famosas a seus autores!",
+        "categoria": "Literatura",
+        "ativo": 1,
+        "userId": 72
+    },
+    {
+        "id": 15,
+        "titulo": "Arte Moderna ou Rabisco?",
+        "descricao": "Descubra se você reconhece movimentos artísticos reais.",
+        "categoria": "Artes",
+        "ativo": 1,
+        "userId": 91
+    },
+    {
+        "id": 16,
+        "titulo": "Notícias da Semana",
+        "descricao": "Fique por dentro do que rolou no mundo nos últimos dias.",
+        "categoria": "Atualidades",
+        "ativo": 1,
+        "userId": 88
+    },
+    {
+        "id": 17,
+        "titulo": "Física Divertida",
+        "descricao": "Entenda conceitos científicos de forma leve e divertida.",
+        "categoria": "Ciências",
+        "ativo": 0,
+        "userId": 108
+    },
+    {
+        "id": 18,
+        "titulo": "História do Brasil",
+        "descricao": "Como anda seu conhecimento sobre o nosso país?",
+        "categoria": "História",
+        "ativo": 1,
+        "userId": 111
+    },
+    {
+        "id": 19,
+        "titulo": "Mundo do Futebol",
+        "descricao": "Você sabe tudo sobre Copas do Mundo, jogadores e clubes?",
+        "categoria": "Esportes",
+        "ativo": 1,
+        "userId": 97
+    },
+    {
+        "id": 20,
+        "titulo": "Games Nostálgicos",
+        "descricao": "Um desafio sobre jogos clássicos e consoles antigos.",
+        "categoria": "Conhecimentos Gerais",
+        "ativo": 1,
+        "userId": 150
+    },    {
+        "id": 21,
+        "titulo": "Clássicos da Literatura Mundial",
+        "descricao": "Teste seu conhecimento sobre os grandes clássicos da literatura!",
+        "categoria": "Literatura",
+        "ativo": 1,
+        "userId": 201
+    },
+    {
+        "id": 22,
+        "titulo": "Música dos Anos 80",
+        "descricao": "Você conhece os hits que marcaram os anos 80?",
+        "categoria": "Entretenimento",
+        "ativo": 1,
+        "userId": 178
+    },
+    {
+        "id": 23,
+        "titulo": "Química no Cotidiano",
+        "descricao": "Descubra como a química está presente no seu dia a dia!",
+        "categoria": "Ciências",
+        "ativo": 0,
+        "userId": 145
+    },
+    {
+        "id": 24,
+        "titulo": "Inteligência Artificial",
+        "descricao": "O que você sabe sobre machine learning e redes neurais?",
+        "categoria": "Tecnologia",
+        "ativo": 1,
+        "userId": 267
+    },
+    {
+        "id": 25,
+        "titulo": "Montanhas Extremas",
+        "descricao": "Conhece as formações montanhosas mais impressionantes do planeta?",
+        "categoria": "Geografia",
+        "ativo": 1,
+        "userId": 89
+    },
+    {
+        "id": 26,
+        "titulo": "Basquete Profissional",
+        "descricao": "Teste seu conhecimento sobre a NBA e outras ligas!",
+        "categoria": "Esportes",
+        "ativo": 1,
+        "userId": 112
+    },
+    {
+        "id": 27,
+        "titulo": "Guerras Mundiais",
+        "descricao": "O que você sabe sobre os conflitos que moldaram o século XX?",
+        "categoria": "História",
+        "ativo": 0,
+        "userId": 203
+    },
+    {
+        "id": 28,
+        "titulo": "Esculturas Famosas",
+        "descricao": "Reconhece as obras esculturais mais importantes da história?",
+        "categoria": "Artes",
+        "ativo": 1,
+        "userId": 156
+    },
+    {
+        "id": 29,
+        "titulo": "Política Internacional",
+        "descricao": "Atualize-se sobre os principais acontecimentos globais!",
+        "categoria": "Atualidades",
+        "ativo": 1,
+        "userId": 189
+    },
+    {
+        "id": 30,
+        "titulo": "Curiosidades Inúteis",
+        "descricao": "Fatos interessantes que você não sabia que precisava saber!",
+        "categoria": "Conhecimentos Gerais",
+        "ativo": 1,
+        "userId": 134
+    },
+    {
+        "id": 31,
+        "titulo": "Poetas Brasileiros",
+        "descricao": "Conhece a obra dos grandes poetas do Brasil?",
+        "categoria": "Literatura",
+        "ativo": 1,
+        "userId": 222
+    },
+    {
+        "id": 32,
+        "titulo": "Séries de Fantasia",
+        "descricao": "Teste seu conhecimento sobre mundos mágicos e criaturas lendárias!",
+        "categoria": "Entretenimento",
+        "ativo": 0,
+        "userId": 167
+    },
+    {
+        "id": 33,
+        "titulo": "Biologia Marinha",
+        "descricao": "Explore os segredos dos oceanos e suas criaturas!",
+        "categoria": "Ciências",
+        "ativo": 1,
+        "userId": 144
+    },
+    {
+        "id": 34,
+        "titulo": "Segurança Digital",
+        "descricao": "O que você sabe sobre proteção de dados e cibersegurança?",
+        "categoria": "Tecnologia",
+        "ativo": 1,
+        "userId": 276
+    },
+    {
+        "id": 35,
+        "titulo": "Rios do Mundo",
+        "descricao": "Conhece os principais rios e seus cursos?",
+        "categoria": "Geografia",
+        "ativo": 1,
+        "userId": 93
+    },
+    {
+        "id": 36,
+        "titulo": "Tênis de Grand Slam",
+        "descricao": "Você sabe tudo sobre os principais torneios de tênis?",
+        "categoria": "Esportes",
+        "ativo": 0,
+        "userId": 118
+    },
+    {
+        "id": 37,
+        "titulo": "Impérios Antigos",
+        "descricao": "Conhece os grandes impérios da antiguidade?",
+        "categoria": "História",
+        "ativo": 1,
+        "userId": 207
+    },
+    {
+        "id": 38,
+        "titulo": "Movimentos Artísticos",
+        "descricao": "Consegue identificar características dos principais movimentos?",
+        "categoria": "Artes",
+        "ativo": 1,
+        "userId": 162
+    },
+    {
+        "id": 39,
+        "titulo": "Economia Global",
+        "descricao": "Entenda os principais conceitos e tendências econômicas!",
+        "categoria": "Atualidades",
+        "ativo": 1,
+        "userId": 195
+    },
+    {
+        "id": 40,
+        "titulo": "Recordes Mundiais",
+        "descricao": "Os fatos e feitos mais impressionantes já registrados!",
+        "categoria": "Conhecimentos Gerais",
+        "ativo": 1,
+        "userId": 138
+    },
+    {
+        "id": 41,
+        "titulo": "Autores Latino-Americanos",
+        "descricao": "Teste seu conhecimento sobre a literatura latino-americana!",
+        "categoria": "Literatura",
+        "ativo": 0,
+        "userId": 225
+    },
+    {
+        "id": 42,
+        "titulo": "Cinema Nacional",
+        "descricao": "O que você sabe sobre a produção cinematográfica brasileira?",
+        "categoria": "Entretenimento",
+        "ativo": 1,
+        "userId": 172
+    },
+    {
+        "id": 43,
+        "titulo": "Astronomia Básica",
+        "descricao": "Conhece os corpos celestes e fenômenos astronômicos?",
+        "categoria": "Ciências",
+        "ativo": 1,
+        "userId": 149
+    },
+    {
+        "id": 44,
+        "titulo": "Redes Sociais",
+        "descricao": "História e curiosidades sobre as plataformas digitais!",
+        "categoria": "Tecnologia",
+        "ativo": 1,
+        "userId": 281
+    },
+    {
+        "id": 45,
+        "titulo": "Climas Extremos",
+        "descricao": "Regiões com condições climáticas mais impressionantes!",
+        "categoria": "Geografia",
+        "ativo": 0,
+        "userId": 96
+    },
+    {
+        "id": 46,
+        "titulo": "Esportes Radicais",
+        "descricao": "Modalidades que testam os limites humanos!",
+        "categoria": "Esportes",
+        "ativo": 1,
+        "userId": 121
+    },
+    {
+        "id": 47,
+        "titulo": "Revolução Industrial",
+        "descricao": "O período que transformou a sociedade moderna!",
+        "categoria": "História",
+        "ativo": 1,
+        "userId": 211
+    },
+    {
+        "id": 48,
+        "titulo": "Fotografia Artística",
+        "descricao": "Reconhece as técnicas e obras mais famosas?",
+        "categoria": "Artes",
+        "ativo": 1,
+        "userId": 168
+    },
+    {
+        "id": 49,
+        "titulo": "Descobertas Científicas Recentes",
+        "descricao": "As novidades mais impactantes da ciência!",
+        "categoria": "Atualidades",
+        "ativo": 0,
+        "userId": 198
+    },
+    {
+        "id": 50,
+        "titulo": "Sabedoria Popular",
+        "descricao": "Provérbios e ditados de diferentes culturas!",
+        "categoria": "Conhecimentos Gerais",
+        "ativo": 1,
+        "userId": 142
+    },
+    {
+        "id": 51,
+        "titulo": "Literatura Infantil",
+        "descricao": "Os clássicos que marcaram gerações!",
+        "categoria": "Literatura",
+        "ativo": 1,
+        "userId": 228
+    },
+    {
+        "id": 52,
+        "titulo": "Animações Premiadas",
+        "descricao": "Os filmes de animação mais aclamados!",
+        "categoria": "Entretenimento",
+        "ativo": 1,
+        "userId": 175
+    },
+    {
+        "id": 53,
+        "titulo": "Genética Básica",
+        "descricao": "Conceitos fundamentais sobre hereditariedade!",
+        "categoria": "Ciências",
+        "ativo": 0,
+        "userId": 153
+    },
+    {
+        "id": 54,
+        "titulo": "Realidade Virtual",
+        "descricao": "O futuro da interação digital!",
+        "categoria": "Tecnologia",
+        "ativo": 1,
+        "userId": 286
+    },
+    {
+        "id": 55,
+        "titulo": "Ilhas Exóticas",
+        "descricao": "Paraísos naturais ao redor do mundo!",
+        "categoria": "Geografia",
+        "ativo": 1,
+        "userId": 99
+    },
+    {
+        "id": 56,
+        "titulo": "Natação Olímpica",
+        "descricao": "Recordes e curiosidades sobre o esporte!",
+        "categoria": "Esportes",
+        "ativo": 1,
+        "userId": 124
+    },
+    {
+        "id": 57,
+        "titulo": "Idade Média",
+        "descricao": "O período entre a antiguidade e o renascimento!",
+        "categoria": "História",
+        "ativo": 0,
+        "userId": 215
+    },
+    {
+        "id": 58,
+        "titulo": "Arquitetura Moderna",
+        "descricao": "As construções mais impressionantes da atualidade!",
+        "categoria": "Artes",
+        "ativo": 1,
+        "userId": 171
+    },
+    {
+        "id": 59,
+        "titulo": "Tecnologias Verdes",
+        "descricao": "Inovações para um futuro sustentável!",
+        "categoria": "Atualidades",
+        "ativo": 1,
+        "userId": 202
+    },
+    {
+        "id": 60,
+        "titulo": "Superstições Globais",
+        "descricao": "Crenças curiosas de diferentes culturas!",
+        "categoria": "Conhecimentos Gerais",
+        "ativo": 1,
+        "userId": 146
+    },
+    {
+        "id": 61,
+        "titulo": "Romances Épicos",
+        "descricao": "As grandes sagas literárias!",
+        "categoria": "Literatura",
+        "ativo": 1,
+        "userId": 231
+    },
+    {
+        "id": 62,
+        "titulo": "Stand-up Comedy",
+        "descricao": "Os comediantes mais famosos do mundo!",
+        "categoria": "Entretenimento",
+        "ativo": 0,
+        "userId": 178
+    },
+    {
+        "id": 63,
+        "titulo": "Ecossistemas",
+        "descricao": "Relações entre seres vivos e ambiente!",
+        "categoria": "Ciências",
+        "ativo": 1,
+        "userId": 157
+    },
+    {
+        "id": 64,
+        "titulo": "Blockchain",
+        "descricao": "Tudo sobre a tecnologia por trás das criptomoedas!",
+        "categoria": "Tecnologia",
+        "ativo": 1,
+        "userId": 291
+    },
+    {
+        "id": 65,
+        "titulo": "Desertos Extremos",
+        "descricao": "Os lugares mais áridos do planeta!",
+        "categoria": "Geografia",
+        "ativo": 1,
+        "userId": 102
+    },
+    {
+        "id": 66,
+        "titulo": "Atletismo",
+        "descricao": "Esportes de pista e campo!",
+        "categoria": "Esportes",
+        "ativo": 0,
+        "userId": 127
+    },
+    {
+        "id": 67,
+        "titulo": "Grécia Antiga",
+        "descricao": "Berço da democracia e filosofia ocidental!",
+        "categoria": "História",
+        "ativo": 1,
+        "userId": 219
+    },
+    {
+        "id": 68,
+        "titulo": "Design Gráfico",
+        "descricao": "Princípios e tendências visuais!",
+        "categoria": "Artes",
+        "ativo": 1,
+        "userId": 174
+    },
+    {
+        "id": 69,
+        "titulo": "Saúde Pública",
+        "descricao": "Desafios e avanços na área da saúde!",
+        "categoria": "Atualidades",
+        "ativo": 1,
+        "userId": 205
+    },
+    {
+        "id": 70,
+        "titulo": "Etiqueta Global",
+        "descricao": "Costumes e boas maneiras em diferentes países!",
+        "categoria": "Conhecimentos Gerais",
+        "ativo": 1,
+        "userId": 150
+    }
+]
