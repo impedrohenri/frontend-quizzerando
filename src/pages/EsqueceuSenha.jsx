@@ -8,21 +8,21 @@ import SubmitButton from "../components/SubmitButton";
 export default function EsqueceuSenha() {
     const navigate = useNavigate();
     const [validated, setValidated] = useState(false);
-    {/*O aviso de envio do email*/ }
+    //O aviso de envio do email
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    {/**/ }
+    //
     const handleSubmit = (event) => {
         event.preventDefault();
         const formData = new FormData(document.getElementById('formEsqueceuSenha'));
         const data = Object.fromEntries(formData);
+       console.log(data)
 
-
-        {/*aqui ficaria o consumo da api*/ }
+        //*aqui ficaria o consumo da api
 
         handleShow()
-     
+        navigate("/Login")
         setValidated(true)
 
 
