@@ -6,8 +6,8 @@ export default function Header() {
         <Navbar expand="lg" className="bg-primary text-white" data-bs-theme="dark">
             <Container fluid className="row-gap-2">
                 <Navbar.Brand href="/" className="me-4 pe-4">
-                    <img alt="Logo símbolo" src="./brand/logo_symbol.svg" width="30" height="30" className="d-inline-block align-top me-3" />
-                    <img src="./brand/logo_text.svg" alt="Logo texto" height="30" />
+                    <img alt="Logo símbolo" src="../brand/logo_symbol.svg" width="30" height="30" className="d-inline-block align-top me-3" />
+                    <img src="../brand/logo_text.svg" alt="Logo texto" height="30" />
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav" className="gap-2">
