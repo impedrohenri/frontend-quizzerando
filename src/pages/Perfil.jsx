@@ -2,7 +2,7 @@ import Header from '../components/Header'
 import {Button,Card,Form,Col,Row} from 'react-bootstrap';
 import { Link} from "react-router-dom";
 import { useState } from "react";
-import ModalCentralizado from '../components/ModalCentralizado';
+import ModalCentralizado from '../components/Modais/ModalCentralizado';
 
 export default function Perfil(){
 
