@@ -24,7 +24,7 @@ function App() {
           <Route path="/quiz/:id" element={<IniciarQuiz/>}/>
           <Route path="/quiz/criar" element={<CriarQuiz/>}/>
           <Route path="/quiz/:id/pergunta/:id" element={<PerguntasQuiz/>}/>
-          <Route path="/quiz/resultado" element={<ResultadoQuiz/>}/>
+          <Route path="/quiz/:id/resultado" element={<ResultadoQuiz/>}/>
           <Route path="*" element={<NotFound/>} />
         </Routes>
       </BrowserRouter>
