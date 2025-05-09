@@ -1,6 +1,7 @@
 import styles from './QuizCard.module.css'
 import { Card, Button } from "react-bootstrap";
 import categorias from '../../data/categorias.json'
+import { Link } from 'react-router-dom';
 
 export default function QuizCard({ quiz }) {
     const categoria = categorias[quiz.categoria]
@@ -17,7 +18,7 @@ export default function QuizCard({ quiz }) {
                     <span>
                         <span className='border fs-7 rounded-pill px-2'>{quiz.categoria}</span>
                     </span>
-                    <Button variant="primary" className='rounded-pill py-1'>Responder</Button>
+                    <Link to={`/quiz/${quiz.id}`}><Button variant="primary" className='rounded-pill py-1'>Responder</Button></Link>
                 </Card.Body>
             </Card>
         </div>
