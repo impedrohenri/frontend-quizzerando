@@ -1,22 +1,23 @@
-import { Link } from "react-router-dom";
-import Header from "../../components/Header";
+import { Link, useParams } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
-export default function ResultadoQuiz() {
+export default function ResultadoQuiz({setShowInit, setIndex}) {
+
+    const {id} = useParams()
+
     return (
         <>
-            <Header />
 
             <div className="vh-100 d-flex flex-column justify-content-center align-items-center">
                 <div className="p-4 bg-primary border-light-subtle rounded-4" style={{ width: '23rem' }}>
                     <h1 style={{color:'white'}}>Resultado:</h1>
-                    <h1 style={{ fontSize: '8.0rem', marginTop: '50px' ,color:'white'}}>11/20</h1>
+                    <h1 style={{ fontSize: '8.0rem', marginTop: '50px' ,color:'white'}}>/</h1>
                 </div>
 
                 <div className="p-4 rounded-4 mt-4" style={{ width: '23rem' }}>
-                    <Link to="/quiz/{:id}">
-                    <Button className="w-100" variant="primary">Tentar Novamente</Button>
-                    </Link>
+                    
+                    <Button className="w-100" variant="primary" onClick={() => {setShowInit(''); setIndex(0)}}>Tentar Novamente</Button>
+                    
                     <Link to="/">
                     <Button className="w-100 mt-3" variant="secondary">Sair</Button>
                     </Link>

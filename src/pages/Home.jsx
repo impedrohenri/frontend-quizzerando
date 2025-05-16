@@ -5,8 +5,8 @@ import OffCanvas from "../components/OffCanvas/OffCanvas";
 import { Button } from "react-bootstrap";
 import Filtragem from "../components/Filtragem/Filtragem";
 import NavPagination from "../components/NavPagination";
-import posts from '../data/quizzes.json'
 import { Link } from "react-router-dom";
+import API_URL from "../API.route";
 
 export default function Home() {
 	const [quizzes, setQuizzes] = useState([])
@@ -14,8 +14,10 @@ export default function Home() {
 
 
 	useEffect(() => {
+		fetch(API_URL + "/quizz/")
+		.then((res) => res.json())
+		.then(resp => {setQuizzes(resp)})
 
-		setQuizzes(posts)
 	}, [])
 
 	// Paginação
@@ -48,7 +50,7 @@ export default function Home() {
 				</div>
 
 
-				<section className="d-flex flex-wrap col-11 col-xl-9 row-gap-3 mt-4">
+				<section className="d-flex flex-wrap col-11 col-xl-9 row-gap-4 mt-4 " style={{ height: "fit-content" }}>
 					{currentPosts.map((quiz, key) => (
 						<QuizCard key={key} quiz={quiz} />
 					))}

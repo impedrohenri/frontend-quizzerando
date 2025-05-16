@@ -1,5 +1,4 @@
 import { Card } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
 import SubmitButton from "../components/SubmitButton";
 import Form from 'react-bootstrap/Form';
 import LogoSideLayer from '../components/LogoSideLayer/LogoSideLayer';

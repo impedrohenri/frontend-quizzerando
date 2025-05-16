@@ -2,15 +2,18 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-function ModalEstatico({ value, titulo, formId, handleSave, children }) {
-  const [show, setShow] = useState(false);
+function ModalEstatico({ value, titulo, formId, onClick, children, setAltsIncorretas, show, setShow, setValidated, disabled}) {
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    setAltsIncorretas && setAltsIncorretas([]);
+    setValidated && setValidated(false);
+  };
   const handleShow = () => setShow(true);
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow} className='mx-auto mt-4 px-4 rounded-pill fw-medium'>
+      <Button variant="primary" onClick={handleShow} className='mx-auto mt-4 px-4 rounded-pill fw-medium' disabled={disabled}>
         {value}
       </Button>
 
@@ -31,7 +34,9 @@ function ModalEstatico({ value, titulo, formId, handleSave, children }) {
           <Button variant="outline-secondary" onClick={handleClose} className='me-auto'>
             Cancelar
           </Button>
-          <Button variant="primary" type='submit' form={formId} onClick={handleSave}>Salvar</Button>
+          <Button variant="primary" type='submit' form={formId} onClick={() => {
+            if (onClick) onClick();
+          }}>Salvar</Button>
         </Modal.Footer>
       </Modal>
     </>
