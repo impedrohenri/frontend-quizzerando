@@ -1,45 +1,106 @@
-import { Button, Card, Container, Form } from "react-bootstrap";
+import { useEffect, useState } from 'react';
+import { Button, Card, Container, Form, ProgressBar } from "react-bootstrap";
 
+export default function PerguntasQuiz({ perguntas, index, setIndex, selecionadas, setSelecionadas, setCorretas }) {
+  const [perguntasComAlternativas, setPerguntasComAlternativas] = useState([]);
 
-export default function PerguntasQuiz({perguntas, pergunta, index, setIndex }) {
-
-
-    const handleGoBack = () => {
-        setIndex(index - 1)
+  // Embaralha uma vez as alternativas assim que o componente monta (ou quando 'perguntas' mudar)
+  useEffect(() => {
+    function embaralharArray(array) {
+      // Fisher-Yates shuffle (mais confiável que sort)
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
     }
 
-    const handleNext = () => {
-        setIndex(index + 1)
-    }
-    
+    const perguntasComAlternativasMisturadas = perguntas.map(pergunta => {
+      const alternativas = [
+        { valor: 'alternativa1', texto: pergunta.alternativa1 },
+        pergunta.alternativa2 && { valor: 'alternativa2', texto: pergunta.alternativa2 },
+        pergunta.alternativa3 && { valor: 'alternativa3', texto: pergunta.alternativa3 },
+        pergunta.alternativa4 && { valor: 'alternativa4', texto: pergunta.alternativa4 },
+        { valor: 'respCorreta', texto: pergunta.respCorreta }
+      ].filter(Boolean);
+
+      return {
+        ...pergunta,
+        alternativas: embaralharArray(alternativas),
+      };
+    });
+
+    setPerguntasComAlternativas(perguntasComAlternativasMisturadas);
+  }, [perguntas]);
+
+  if (perguntasComAlternativas.length === 0) return null; // aguardando embaralhar
+
+  const pergunta = perguntasComAlternativas[index];
+  const qntdPerguntas = perguntas.length;
+
+  const handleGoBack = () => {
+    const formData = new FormData(document.getElementById("perguntasForm"));
+    const data = Object.fromEntries(formData);
+
+    const novaSelecionada = [...selecionadas];
+    novaSelecionada[index] = data.altSelecionada;
+    setSelecionadas(novaSelecionada);
+
+    setIndex(index - 1);
+  }
 
 
-    return (
-        <>
+  const handleNext = (event) => {
+    event.preventDefault();
+    const formData = new FormData(document.getElementById("perguntasForm"));
+    const data = Object.fromEntries(formData);
 
-            <Container className="mt-4">
-                <Card className="col-11 col-sm-9 col-md-8 col-lg-6 p-4 mx-auto row-gap-4">
-                    <h5>{index + 1}. {pergunta.enunciado}</h5>
+    const novaSelecionada = [...selecionadas];
+    novaSelecionada[index] = data.altSelecionada;
+    setSelecionadas(novaSelecionada);
 
+    setCorretas(novaSelecionada.filter(item => item === 'respCorreta').length);
 
-                    <div className="ps-4">
-                        {<Form.Check type="radio" name="alt" id="alternativa1" label={pergunta.alternativa1} />}
-                        {pergunta.alternativa2 && <Form.Check type="radio" name="alt" id="alternativa2" label={`${pergunta.alternativa2}`} />}
-                        {pergunta.alternativa3 && <Form.Check type="radio" name="alt" id="alternativa3" label={`${pergunta.alternativa3}`} />}
-                        {pergunta.alternativa4 && <Form.Check type="radio" name="alt" id="alternativa4" label={`${pergunta.alternativa4}`} />}
-                        {<Form.Check type="radio" name="alt" id="alternativa5" label={pergunta.respCorreta} />}
-                    </div>
+    setIndex(index + 1);
 
-                    <hr className="py-0 my-0 mt-4" />
+    document.getElementById("perguntasForm").reset();
+  }
 
-                    <div className="d-flex justify-content-between">
-                        <Button variant="outline-secondary" className="rounded-pill" onClick={handleGoBack} disabled={index===0}>Voltar</Button>
-                        
-                        <Button variant="primary" className="rounded-pill" onClick={handleNext}>{perguntas.length-1 === index ?"Finalizar":  "Próxima"}</Button>
-                    </div>
+  return (
+    <Container className="mt-4 py-auto vh-100">
+      <ProgressBar animated now={((index + 1) / qntdPerguntas) * 100} label={`${index + 1}/${qntdPerguntas}`} className="col-11 col-sm-9 col-md-8 col-lg-6 mb-4 mx-auto" />
+      <Card className="col-11 col-sm-9 col-md-8 col-lg-6 p-4 mx-auto row-gap-4 bg-light rounded-4">
+        <h5>{index + 1}. {pergunta.enunciado}</h5>
 
-                </Card>
-            </Container>
-        </>
-    )
+        <Form id="perguntasForm" onSubmit={handleNext} className="d-flex flex-column ps-4 row-gap-3">
+          {pergunta.alternativas.map((alternativa, i) => (
+            <Form.Check
+              key={i}
+              type="radio"
+              name="altSelecionada"
+              id={`alt${i}`}
+              value={alternativa.valor}
+              label={alternativa.texto}
+              checked={selecionadas[index] === alternativa.valor}
+              onChange={(e) => {
+                const novaSelecionada = [...selecionadas];
+                novaSelecionada[index] = e.target.value;
+                setSelecionadas(novaSelecionada);
+                setCorretas(novaSelecionada.filter(item => item === 'respCorreta').length);
+              }}
+            />
+          ))}
+        </Form>
+
+        <hr className="py-0 my-0 mt-4" />
+
+        <div className="d-flex">
+          {index !== 0 && <Button variant="outline-secondary" className="rounded-pill" onClick={handleGoBack}>Voltar</Button>}
+
+          <Button variant="primary" type="submit" form="perguntasForm" className="rounded-pill ms-auto">{qntdPerguntas - 1 === index ? "Finalizar" : "Próxima"}</Button>
+        </div>
+      </Card>
+    </Container>
+  );
 }

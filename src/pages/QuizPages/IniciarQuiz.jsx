@@ -13,6 +13,8 @@ export default function IniciarQuiz() {
     const [perguntas, setPerguntas] = useState([]);
     const [showInit, setShowInit] = useState('');
     const [index, setIndex] = useState(0);
+    const [corretas, setCorretas] = useState(0);
+    const [selecionadas, setSelecionadas] = useState([]);
 
     useEffect(() => {
         fetch(`${API_URL}/quizz/${id}`)
@@ -39,10 +41,23 @@ export default function IniciarQuiz() {
                     index={index}
                     setIndex={setIndex}
                     perguntas={perguntas}
+                    corretas={corretas}
+                    setCorretas={setCorretas}
+                    selecionadas={selecionadas}
+                    setSelecionadas={setSelecionadas}
                 />
             );
         } else {
-            componenteRenderizado = <ResultadoQuiz setShowInit={setShowInit} setIndex={setIndex} />;
+            componenteRenderizado = (
+                <ResultadoQuiz
+                    setShowInit={setShowInit}
+                    setIndex={setIndex}
+                    corretas={corretas}
+                    setCorretas={setCorretas}
+                    selecionadas={selecionadas}
+                    setSelecionadas={setSelecionadas}
+                    perguntas={perguntas}
+                />)
         }
     }
 
