@@ -3,7 +3,7 @@ import { Button, Card, Form } from "react-bootstrap";
 import LogoSideLayer from "../components/LogoSideLayer/LogoSideLayer";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import SubmitButton from "../components/SubmitButton";
+import SubmitButton from "../components/Buttons/SubmitButton";
 
 export default function EsqueceuSenha() {
     const navigate = useNavigate();

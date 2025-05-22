@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Header from "../components/Header";
 import QuizCard from "../components/QuizCard/QuizCard";
 import OffCanvas from "../components/OffCanvas/OffCanvas";
@@ -7,16 +7,23 @@ import Filtragem from "../components/Filtragem/Filtragem";
 import NavPagination from "../components/NavPagination";
 import { Link } from "react-router-dom";
 import API_URL from "../API.route";
+import { AuthContext } from "../contexts/AuthContexts";
+import CriarQuizButton from "../components/Buttons/CriarQuizButton";
 
 export default function Home() {
 	const [quizzes, setQuizzes] = useState([])
 	const [filtros, setFiltros] = useState([])
-
+	const {token} = useContext(AuthContext)
+	
 
 	useEffect(() => {
-		fetch(API_URL + "/quizz/")
+		fetch(API_URL + "/quizz/", {
+			headers:{
+				'Authorization': `Bearer ${token}`
+			}
+		})
 		.then((res) => res.json())
-		.then(resp => {setQuizzes(resp)})
+		.then(resp => {setQuizzes(resp); console.log(resp)})
 
 	}, [])
 
@@ -25,7 +32,9 @@ export default function Home() {
 	const postsPerPage = 12;
 	const indexOfLastPost = currentPage * postsPerPage;
 	const indexOfFirstPost = indexOfLastPost - postsPerPage;
-	const currentPosts = quizzes.slice(indexOfFirstPost, indexOfLastPost);
+	
+	const currentPosts = quizzes.slice(indexOfFirstPost, indexOfLastPost)
+	
 
 	return (
 		<>
@@ -34,16 +43,12 @@ export default function Home() {
 
 				<div className="d-flex justify-content-between col-11 px-2">
 					<Link to='/quiz/criar' className="d-xl-none px-4 float-start">
-						<Button className="rounded-pill fw-medium">
-							<i className="fa fa-plus me-2"></i>Criar Quiz
-						</Button>
+						<CriarQuizButton/>
 					</Link>
 
 					<OffCanvas button='Filtros' titulo='Filtrar Quizzes'>
 						<Link to='/quiz/criar' className="mt-3 mb-4 px-4 mx-auto ">
-							<Button className="rounded-pill fw-medium">
-								<i className="fa fa-plus me-2"></i>Criar Quiz
-							</Button>
+							<CriarQuizButton/>
 						</Link>
 						<Filtragem setFiltros={setFiltros} filtros={filtros} />
 					</OffCanvas>
@@ -61,9 +66,7 @@ export default function Home() {
 
 					<div className="d-flex flex-column bg-white">
 						<Link to='/quiz/criar' className="mx-auto px-4 fw-medium">
-							<Button  className="rounded-pill my-4 ">
-								<i className="fa fa-plus me-2"></i>Criar Quiz
-							</Button>
+							<CriarQuizButton/>
 						</Link>
 						<hr className="mb-0 pt-0" />
 						<h6 className="ps-3 py-2 mb-0 text-bg-light ">Filtrar</h6>

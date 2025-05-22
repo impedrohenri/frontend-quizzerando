@@ -7,6 +7,8 @@ import API_URL from "../../API.route";
 import quizCategorias from '../../data/categorias.json'
 import AlternativaIncorreta from "../../components/AlternativaIncorreta/AlternativaIncorreta";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContexts";
 
 export default function CriarQuiz() {
     const [validated, setValidated] = useState(false);
@@ -16,6 +18,7 @@ export default function CriarQuiz() {
     const [altsIncorretas, setAltsIncorretas] = useState([]);
     const [showPerguntas, setShowPerguntas] = useState(false);
     const [showConfirmacao, setShowConfirmacao] = useState(false);
+    const token = localStorage.getItem(`auth`)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -45,7 +48,7 @@ export default function CriarQuiz() {
         setValidated(false);
         setShowPerguntas(false)
         setAltsIncorretas([]);
-        
+
     }
 
 
@@ -67,7 +70,8 @@ export default function CriarQuiz() {
             const res = await fetch(API_URL + "/quizz/cad", {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(quizData)
             });
@@ -90,7 +94,8 @@ export default function CriarQuiz() {
                 await fetch(API_URL + "/pergunta/cad", {
                     method: "POST",
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
                     },
                     body: JSON.stringify(pergunta)
                 });
@@ -100,9 +105,8 @@ export default function CriarQuiz() {
             console.error(err);
         }
 
-        navigate('/')
+       navigate('/')
     };
-
 
 
     return (
@@ -203,7 +207,7 @@ export default function CriarQuiz() {
                         </ModalEstatico>
 
 
-                        <ModalEstatico disabled={perguntasCad.length===0}
+                        <ModalEstatico disabled={perguntasCad.length === 0}
                             value='Criar'
                             titulo='Confirmar salvamento'
                             onClick={handleSave}
@@ -213,7 +217,7 @@ export default function CriarQuiz() {
                             <h6>Deseja salvar o quiz?  </h6>
                             <span>Clique em 'Salvar' e você será redirecionado a tela principal</span>
                         </ModalEstatico>
-                        {perguntasCad.length===0 && <span className="mx-auto text-black-50">Você precisa cadastrar ao menos um pergunta para criar o quiz.</span> }
+                        {perguntasCad.length === 0 && <span className="mx-auto text-black-50">Você precisa cadastrar ao menos um pergunta para criar o quiz.</span>}
                     </Card>
 
 

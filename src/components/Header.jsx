@@ -1,8 +1,16 @@
+import { useContext } from "react";
 import { Button, Container, Form, InputGroup, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContexts";
 
 
 export default function Header() {
+    const {signOut} = useContext(AuthContext)
+
+    const handleLogout = () => {
+        signOut()
+    }
+
     return (
         <Navbar expand="lg" className="bg-primary text-white" data-bs-theme="dark">
             <Container fluid className="row-gap-2">
@@ -31,7 +39,7 @@ export default function Header() {
                     <Nav className="ms-auto text-body-primary column-gap-2 row-gap-1">
                         <Nav.Link as={Link} to="/" className="text-white text-indigo-50 bg-hover-primary border-light-subtle rounded-pill px-3 pe-auto ">Home</Nav.Link>
                         <Nav.Link as={Link} to="/perfil" className="text-white text-indigo-50 bg-hover-primary border-light-subtle rounded-pill px-3 pe-auto ">Perfil</Nav.Link>
-                        <Nav.Link as={Link} to="/login" className="text-white bg-hover-primary rounded-pill px-3 pe-auto">Sair</Nav.Link>
+                        <Nav.Link as={Link} onClick={handleLogout} className="text-white bg-hover-primary rounded-pill px-3 pe-auto">Sair</Nav.Link>
                     </Nav>
 
                 </Navbar.Collapse>

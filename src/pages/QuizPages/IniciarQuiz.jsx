@@ -1,11 +1,12 @@
 import { Button, Card, Container, Row } from "react-bootstrap";
 import Header from "../../components/Header";
 import categorias from '../../data/categorias.json'
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import API_URL from "../../API.route";
 import PerguntasQuiz from "./PerguntasQuiz";
 import ResultadoQuiz from "./ResultadoQuiz"
+import { AuthContext } from "../../contexts/AuthContexts";
 
 export default function IniciarQuiz() {
     const { id } = useParams();
@@ -15,17 +16,26 @@ export default function IniciarQuiz() {
     const [index, setIndex] = useState(0);
     const [corretas, setCorretas] = useState(0);
     const [selecionadas, setSelecionadas] = useState([]);
+    const {token} = useContext(AuthContext)
 
     useEffect(() => {
-        fetch(`${API_URL}/quizz/${id}`)
+        fetch(`${API_URL}/quizz/${id}`, {
+			headers:{
+				'Authorization': `Bearer ${token}`
+			}
+		})
             .then(res => res.json())
             .then(resp => setQuiz(resp))
 
-        fetch(`${API_URL}/quizz/${id}/perguntas`)
+        fetch(`${API_URL}/quizz/${id}/perguntas`, {
+			headers:{
+				'Authorization': `Bearer ${token}`
+			}
+		})
             .then(res => res.json())
             .then(resp => { setPerguntas(resp); console.log(resp) })
 
-    }, [id])
+    }, [id, token])
 
     const handleInit = () => {
         setShowInit('d-none')
