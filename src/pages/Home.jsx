@@ -32,8 +32,9 @@ export default function Home() {
 	const postsPerPage = 12;
 	const indexOfLastPost = currentPage * postsPerPage;
 	const indexOfFirstPost = indexOfLastPost - postsPerPage;
-	
-	const currentPosts = quizzes.slice(indexOfFirstPost, indexOfLastPost)
+	let currentPosts;
+	quizzes.length > 0 &&
+	(currentPosts = quizzes.slice(indexOfFirstPost, indexOfLastPost))
 	
 
 	return (
@@ -55,10 +56,13 @@ export default function Home() {
 				</div>
 
 
-				<section className="d-flex flex-wrap col-11 col-xl-9 row-gap-4 mt-4 " style={{ height: "fit-content" }}>
-					{currentPosts.map((quiz, key) => (
-						<QuizCard key={key} quiz={quiz} />
-					))}
+				<section className="d-flex flex-wrap col-11 col-xl-9 row-gap-4 mt-4" style={{ height: "fit-content" }}>
+					{quizzes.length > 0 ? 
+					currentPosts?.map((quiz, key) => (
+						<QuizCard key={key} quiz={quiz} setQuizzes={setQuizzes} quizzes={quizzes}/>
+					)): 
+					<span className="alert alert-light fs-4 fw-medium text-secondary float-center mx-auto mt-4 " role="alert">Não existem quizzes cadastrados </span>
+					}
 				</section>
 
 

@@ -7,7 +7,7 @@ import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import EsqueceuSenha from './pages/EsqueceuSenha';
 import Perfil from './pages/Perfil';
-import { CriarQuiz, IniciarQuiz, PerguntasQuiz, ResultadoQuiz } from './pages/QuizPages';
+import { CriarQuiz, IniciarQuiz} from './pages/QuizPages';
 import { AuthProvider } from './contexts/AuthContexts';
 import PrivateRoutes from './Auth/PrivateRoutes';
 
@@ -29,8 +29,7 @@ function App() {
               <Route path="/perfil" element={<Perfil />} />
               <Route path="/quiz/criar" element={<CriarQuiz />} />
               <Route path="/quiz/:id" element={<IniciarQuiz />} />
-              <Route path="/quiz/:id/pergunta/:id" element={<PerguntasQuiz />} />
-              <Route path="/quiz/:id/resultado" element={<ResultadoQuiz />} />
+              
             </Route>
 
             {/* Rota para 404 */}

@@ -4,8 +4,8 @@ import categorias from '../../data/categorias.json'
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import API_URL from "../../API.route";
-import PerguntasQuiz from "./PerguntasQuiz";
-import ResultadoQuiz from "./ResultadoQuiz"
+import PerguntasQuiz from "../../components/PerguntaQuiz/PerguntasQuiz";
+import ResultadoQuiz from "../../components/ResultadoQuiz/ResultadoQuiz"
 import { AuthContext } from "../../contexts/AuthContexts";
 
 export default function IniciarQuiz() {
