@@ -1,0 +1,195 @@
+import Header from '../components/Header'
+import {Button,Card,Form,Col,Row} from 'react-bootstrap';
+import { Link} from "react-router-dom";
+import { useState } from "react";
+import ModalCentralizado from '../components/ModalCentralizado';
+
+export default function Perfil(){
+
+
+    const [modalShowNome, setModalShowNome] = useState(false);
+    const [modalShowEmail, setModalShowEmail] = useState(false);
+    const [modalShowSenha, setModalShowSenha] = useState(false);
+
+   
+    
+    return (
+        <>
+    {/*Modais*/}
+
+    <ModalCentralizado
+        show={modalShowNome}
+        onHide={() => setModalShowNome(false)}
+        children={
+       
+        <Form.Group as={Row} className="mb-3">
+            <Form.Label column sm="2">
+            Nome:
+            </Form.Label>
+            <Col sm="20">
+            <Form.Control type="text" name="name" placeholder="Digite seu novo nome" required/>
+            </Col>
+        </Form.Group>
+      
+        }
+      />
+
+      <ModalCentralizado
+        show={modalShowEmail}
+        onHide={() => setModalShowEmail(false)}
+        children={
+
+        <Form.Group as={Row} className="mb-3">
+            <Form.Label column sm="2">
+            Email:
+            </Form.Label>
+            <Col sm="20">
+            <Form.Control type="text" name="email" placeholder="Digite seu novo email" required/>
+            </Col>
+        </Form.Group>
+        }
+      />
+
+      <ModalCentralizado
+        show={modalShowSenha}
+        onHide={() => setModalShowSenha(false)}
+        children={
+
+        <Form.Group as={Row} className="mb-3" >
+            <Form.Label column sm="3">
+            Senha atual:
+            </Form.Label>
+            <Col sm="20">
+            <Form.Control type="text" name="senhaAtual" placeholder="Digite sua senha atual" required/>
+            </Col>
+
+            <Form.Label column sm="3">
+            Nova senha:
+            </Form.Label>
+            <Col sm="20">
+            <Form.Control type="text" name="novaSenha" placeholder="Digite sua nova senha" required/>
+            </Col>
+
+            <Form.Label column sm="4">
+            Confirme senha:
+            </Form.Label>
+            <Col sm="20">
+            <Form.Control type="text" name="confirmeSenha" placeholder="Confirme sua nova senha" required/>
+            </Col>
+        </Form.Group>
+        }
+      />
+      
+      {/**/}
+
+
+        <Header/>
+       
+
+      
+        <div className="form-perfil col-12 d-flex align-items-center justify-content-center vh-100 ">
+        
+                <Card style={{ width: '50rem' }} className='p-4 bg-light border-light-subtle rounded-4'>
+                    <h4 className='text-center'>Seus dados</h4>
+
+                    <Form >
+
+                        <Form.Group className="mb-3">
+                            <Form.Label>Nome </Form.Label>
+                            <div style={{display:'flex', alignItems:'center', gap:'8px'}}>
+                            <Form.Control name="nome" type="text" placeholder="cleiton28" disabled />
+                            <button
+                                onClick={()=>setModalShowNome(true)}
+                                style={{
+                                    border: 'none',
+                                    background: 'none',
+                                    padding: 0,
+                                    cursor: 'pointer'
+                                }}
+                                type="button"
+                            >
+                            <img src="./brand/edit.svg" alt="edit"  height="40" />
+                            </button>
+                            </div>
+
+                        </Form.Group>
+
+                        <Form.Group className="mb-3 " >
+                            <Form.Label>Email </Form.Label>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                <Form.Control
+                                type="email"
+                                placeholder="cleiton@gmail.com"
+                                
+                                disabled
+                                />
+                               <button
+                                onClick={()=>setModalShowEmail(true)}
+                                style={{
+                                    border: 'none',
+                                    background: 'none',
+                                    padding: 0,
+                                    cursor: 'pointer'
+                                }}
+                                type="button"
+                            >
+                            <img src="./brand/edit.svg" alt="edit"  height="40" />
+                            </button>
+                            </div>
+                        </Form.Group>
+
+                        <Form.Group className="mb-3">
+                            <Form.Label>Senha</Form.Label>
+                            <div style={{display:'flex', alignItems:'center', gap:'8px'}}>
+                            <Form.Control name='senha' type="password" placeholder="*****"  disabled />
+                            <button
+                                onClick={()=>setModalShowSenha(true)}
+                                style={{
+                                    border: 'none',
+                                    background: 'none',
+                                    padding: 0,
+                                    cursor: 'pointer'
+                                }}
+                                type="button"
+                            >
+                            <img src="./brand/edit.svg" alt="edit"  height="40" />
+                            </button>
+                            </div>
+                        </Form.Group>
+
+                        
+
+                        <div className="d-flex justify-content-between mt-4 pt-4">
+                            <Link to='/'>
+                                <Button variant="outline-secondary" >
+                                    Voltar
+                                </Button>
+                            </Link>
+
+                            <Link to='/login'>
+                                <Button >
+                                    Sair da Conta
+                                </Button>
+                            </Link>
+                                
+                                
+                        </div>
+                    </Form>
+                </Card>
+                
+
+
+
+
+            </div>
+       
+
+        
+     
+      
+    </>
+  );
+}
+
+
+    
