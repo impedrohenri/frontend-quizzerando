@@ -1,9 +1,15 @@
-import { useEffect, useState } from 'react';
+import styles from './PerguntaQuiz.module.css'
+import { useContext, useEffect, useState } from 'react';
 import { Button, Card, Container, Form, ProgressBar } from "react-bootstrap";
+import API_URL from '../../API.route';
+import { AuthContext } from '../../contexts/AuthContexts';
 
-export default function PerguntasQuiz({ perguntas, index, setIndex, selecionadas, setSelecionadas, setCorretas }) {
+export default function PerguntasQuiz({ perguntas, index, setIndex, selecionadas, setSelecionadas, corretas, setCorretas }) {
   const [perguntasComAlternativas, setPerguntasComAlternativas] = useState([]);
-
+  const {token, userId} = useContext(AuthContext)
+  const pergunta = perguntasComAlternativas[index];
+  const qntdPerguntas = perguntas.length;
+  
   // Embaralha uma vez as alternativas assim que o componente monta (ou quando 'perguntas' mudar)
   useEffect(() => {
     function embaralharArray(array) {
@@ -36,8 +42,6 @@ export default function PerguntasQuiz({ perguntas, index, setIndex, selecionadas
 
   if (perguntasComAlternativas.length === 0) return null; // aguardando embaralhar
 
-  const pergunta = perguntasComAlternativas[index];
-  const qntdPerguntas = perguntas.length;
 
   const handleGoBack = () => {
     const formData = new FormData(document.getElementById("perguntasForm"));
@@ -67,10 +71,32 @@ export default function PerguntasQuiz({ perguntas, index, setIndex, selecionadas
     document.getElementById("perguntasForm").reset();
   }
 
+  const handleSaveHistory = () => {
+    const data = {}
+
+    data.quizzId = perguntas[0].quizzId;
+    data.userId = userId;
+    data.erros = qntdPerguntas - corretas;
+    data.acertos = corretas;
+    data.pontuacao = (corretas / qntdPerguntas)*100;
+
+
+    fetch(`${API_URL}/resultado/cad`, {
+      method: 'POST',
+      headers:{
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(data)
+    })
+    
+
+  }
+
   return (
-    <Container className="mt-4 py-auto vh-100">
-      <ProgressBar animated now={((index + 1) / qntdPerguntas) * 100} label={`${index + 1}/${qntdPerguntas}`} className="col-11 col-sm-9 col-md-8 col-lg-6 mb-4 mx-auto" />
-      <Card className="col-11 col-sm-9 col-md-8 col-lg-6 p-4 mx-auto row-gap-4 bg-light rounded-4">
+    <Container className={`d-flex flex-column align-items-center mt-4 py-auto ${styles.container}`}>
+      <ProgressBar now={((index + 1) / qntdPerguntas) * 100} label={`${index + 1}/${qntdPerguntas}`} className="col-11 col-sm-9 col-md-8 col-lg-6 mb-4 mx-auto my-auto" />
+      <Card className="col-11 col-sm-9 col-md-8 col-lg-6 p-4 mx-auto row-gap-4 bg-light rounded-4 mb-auto">
         <h5>{index + 1}. {pergunta.enunciado}</h5>
 
         <Form id="perguntasForm" onSubmit={handleNext} className="d-flex flex-column ps-4 row-gap-3">
@@ -98,7 +124,7 @@ export default function PerguntasQuiz({ perguntas, index, setIndex, selecionadas
         <div className="d-flex">
           {index !== 0 && <Button variant="outline-secondary" className="rounded-pill" onClick={handleGoBack}>Voltar</Button>}
 
-          <Button variant="primary" type="submit" form="perguntasForm" className="rounded-pill ms-auto">{qntdPerguntas - 1 === index ? "Finalizar" : "Próxima"}</Button>
+          <Button variant="primary" type="submit" form="perguntasForm" className="rounded-pill ms-auto" onClick={qntdPerguntas - 1 === index ? handleSaveHistory : undefined}>{qntdPerguntas - 1 === index ? "Finalizar" : "Próxima"}</Button>
         </div>
       </Card>
     </Container>
