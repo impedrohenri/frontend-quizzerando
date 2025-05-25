@@ -8,10 +8,15 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [role, setRole] = useState(localStorage.getItem('role'))
     const [token, setToken] = useState(localStorage.getItem('auth'))
+    const [userInfo, setUserInfo] = useState(localStorage.getItem('userInfo'))
+    const [userId, setUserId] = useState(localStorage.getItem('user@id'))
+
     const navigate = useNavigate()
 
     useEffect(() => {
-            setToken(localStorage.getItem('auth'))
+        setToken(localStorage.getItem('auth'))
+        setUserId(localStorage.getItem('user@id'))
+        setUserInfo(localStorage.getItem('userInfo'))
     }, [])
 
 
@@ -24,16 +29,16 @@ export const AuthProvider = ({ children }) => {
             body: JSON.stringify(data),
         });
 
+        const responseData = await response.json();
+
+
         if (response.status === 401) {
             return response.status;
         }
-
-        const responseData = await response.json();
-
         if (!!responseData.token) {
-            let token = responseData.token
             localStorage.setItem('auth', responseData.token)
             localStorage.setItem('role', responseData.role)
+            localStorage.setItem('user@id', responseData.id)
             setToken(responseData.token)
             return true
         }
@@ -47,7 +52,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ signed: !!token, token, signIn, signOut, role }}>
+        <AuthContext.Provider value={{ signed: !!token, token, signIn, signOut, role, userInfo, userId }}>
             {children}
         </AuthContext.Provider>
     )

@@ -38,6 +38,7 @@ export default function Header() {
 
                     <Nav className="ms-auto text-body-primary column-gap-2 row-gap-1">
                         <Nav.Link as={Link} to="/" className="text-white text-indigo-50 bg-hover-primary border-light-subtle rounded-pill px-3 pe-auto ">Home</Nav.Link>
+                        <Nav.Link as={Link} to="/historico" className="text-white text-indigo-50 bg-hover-primary border-light-subtle rounded-pill px-3 pe-auto ">Histórico</Nav.Link>
                         <Nav.Link as={Link} to="/perfil" className="text-white text-indigo-50 bg-hover-primary border-light-subtle rounded-pill px-3 pe-auto ">Perfil</Nav.Link>
                         <Nav.Link as={Link} onClick={handleLogout} className="text-white bg-hover-primary rounded-pill px-3 pe-auto">Sair</Nav.Link>
                     </Nav>
