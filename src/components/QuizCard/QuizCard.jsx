@@ -9,7 +9,7 @@ import { AuthContext } from '../../contexts/AuthContexts';
 
 export default function QuizCard({ quiz, setQuizzes, quizzes }) {
     const categoria = categorias[quiz.categoria]
-    const {token, role} = useContext(AuthContext)
+    const { token, role } = useContext(AuthContext)
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -17,9 +17,9 @@ export default function QuizCard({ quiz, setQuizzes, quizzes }) {
     const handleDelete = () => {
         fetch(API_URL + '/quizz/del/' + quiz.id, {
             method: 'DELETE',
-            headers:{
-				'Authorization': `Bearer ${token}`
-			}
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
         })
         setQuizzes(quizzes.filter(objeto => objeto.id !== quiz.id))
         handleClose()
@@ -29,10 +29,7 @@ export default function QuizCard({ quiz, setQuizzes, quizzes }) {
     return (
         <div className="col-12 col-sm-6 col-lg-4 px-2">
             <Card className="rounded-4">
-                <Card.Header as="h6" className="text-truncate rounded-top-4 position-relative pe-4">{quiz.titulo}
-                    {role==='admin' && <div onClick={handleShow}>
-                        <i className='fa fa-trash position-absolute top-50 end-0 translate-middle-y me-2'></i>
-                    </div>}
+                <Card.Header as="h6" className="text-truncate rounded-top-4 position-relative">{quiz.titulo}
                 </Card.Header>
                 <Card.Body className='d-flex flex-wrap justify-content-between row-gap-4 bg-color-danger'>
                     <div className='col-3'><i className={categoria}></i></div>
@@ -44,6 +41,21 @@ export default function QuizCard({ quiz, setQuizzes, quizzes }) {
                     </span>
                     <Link to={`/quiz/${quiz.id}`}><Button variant="primary" className='rounded-pill py-1'>Responder</Button></Link>
                 </Card.Body>
+                {role === 'admin' &&
+                    <Card.Footer>
+                        <div className="d-flex align-items-evenly justify-content-evenly">
+                        {/* Botão de editar */}
+                        <Link to={`/quiz/editar/${quiz.id}`} className="text-primary me-3">
+                            <i className='fa fa-edit'></i> Editar
+                        </Link>
+
+                        {/* Botão de deletar */}
+                        <div role="button" onClick={handleShow} className="text-danger">
+                            <i className='fa fa-trash'></i> Excluir
+                        </div>
+                    </div>
+                    </Card.Footer>
+                }
             </Card>
 
             {/* Modal de deleção */}

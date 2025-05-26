@@ -1,4 +1,4 @@
-import { Button, Card, Container, Row, Spinner } from "react-bootstrap";
+import { Button, Card, Container, Row } from "react-bootstrap";
 import Header from "../../components/Header";
 import categorias from '../../data/categorias.json'
 import { useContext, useEffect, useState } from "react";
@@ -21,7 +21,7 @@ export default function IniciarQuiz() {
     const { token } = useContext(AuthContext)
 
     useEffect(() => {
-
+        setLoad(true)
         fetch(`${API_URL}/quizz/${id}`, {
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -29,6 +29,7 @@ export default function IniciarQuiz() {
         })
             .then(res => res.json())
             .then(resp => setQuiz(resp))
+            .then(() => setLoad(false))
 
 
 
@@ -48,7 +49,7 @@ export default function IniciarQuiz() {
             }
         })
             .then(res => res.json())
-            .then(resp => { setPerguntas(resp); console.log(resp); setLoad(false) })
+            .then(resp => { setPerguntas(resp); setLoad(false) })
     }
 
 
@@ -83,23 +84,24 @@ export default function IniciarQuiz() {
 
     return (
         <>
-            <Header className='fixed-top'/>
-            
+            <Header className='fixed-top' />
 
-            {load && <Loading/>}
+
             <Container className="mt-4">
-                <Card className={`col-11 col-sm-9 col-md-8 col-lg-6 p-4 mx-auto row-gap-4 ${showInit}`}>
-                    <h4>{quiz.titulo}</h4>
-                    <Row>
-                        <div className="col-2"><i className={`${categorias[quiz.categoria]}`}></i></div>
-                        <p className="col-10">{quiz.descricao}</p>
-                    </Row>
-                    <h6>Categoria: <span>{quiz.categoria}</span></h6>
+                {load ? <Loading /> :
+                    <Card className={`col-11 col-sm-9 col-md-8 col-lg-6 p-4 mx-auto row-gap-4 ${showInit}`}>
+                        <h4>{quiz.titulo}</h4>
+                        <Row className="d-flex justify-content-between">
+                            <div className="col-2"><i className={`${categorias[quiz.categoria]}`}></i></div>
+                            <p className="col-9 col-md-10">{quiz.descricao}</p>
+                        </Row>
+                        <h6>Categoria: <span>{quiz.categoria}</span></h6>
 
-                    <span className="text-black-50">Observação: caso seja desconectado antes de finalizar o quiz, todo o progresso será perdido.</span>
+                        <span className="text-black-50">Observação: caso seja desconectado antes de finalizar o quiz, todo o progresso será perdido.</span>
 
-                    <Button className="rounded-pill mx-auto fw-semibold mt-4" onClick={handleInit}>Iniciar quiz</Button>
-                </Card>
+                        <Button className="rounded-pill mx-auto fw-semibold mt-4" onClick={handleInit}>Iniciar quiz</Button>
+                    </Card>
+                }
 
                 {!load && componenteRenderizado}
             </Container>

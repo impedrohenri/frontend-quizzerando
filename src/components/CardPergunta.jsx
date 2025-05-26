@@ -1,9 +1,13 @@
 import { Card } from "react-bootstrap";
 
-export default function CardPergunta({ index, pergunta, perguntasCad, setPerguntasCad }) {
+export default function CardPergunta({ index, pergunta, perguntasCad, setPerguntasCad, setPerguntasToDelete }) {
 
     const handleDelete = () => {
         setPerguntasCad(perguntasCad.filter(p => p !== pergunta));
+        
+        if (typeof setPerguntasToDelete === 'function') {
+            setPerguntasToDelete(prev => prev.filter(p => p !== pergunta));
+        }
     }
 
     return (
