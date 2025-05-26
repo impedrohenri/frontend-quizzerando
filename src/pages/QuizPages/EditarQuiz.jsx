@@ -6,11 +6,13 @@ import CardPergunta from "../../components/CardPergunta";
 import API_URL from "../../API.route";
 import quizCategorias from '../../data/categorias.json'
 import AlternativaIncorreta from "../../components/AlternativaIncorreta/AlternativaIncorreta";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContexts";
+import Loading from "../../components/Loading/Loading";
 
-export default function CriarQuiz() {
+export default function EditarQuiz() {
+    const [load, setLoad] = useState(false)
     const [validated, setValidated] = useState(false);
     const [quizFormValidated, setQuizFormValidated] = useState(false);
     const [perguntasCad, setPerguntasCad] = useState([]);
@@ -18,12 +20,42 @@ export default function CriarQuiz() {
     const [altsIncorretas, setAltsIncorretas] = useState([]);
     const [showPerguntas, setShowPerguntas] = useState(false);
     const [showConfirmacao, setShowConfirmacao] = useState(false);
-    const {userId, token} = useContext(AuthContext)
+    const { quizId } = useParams()
+    const { userId, token } = useContext(AuthContext)
     const navigate = useNavigate()
+    const [perguntasToDelete, setPerguntasToDelete] = useState([])
+    const [quizToEdit, setQuizToEdit] = useState({})
+    const [categoriaInicial, setCategoriaInicial] = useState([])
+
 
     useEffect(() => {
         setCategorias(quizCategorias)
-    }, [])
+        setLoad(true)
+        // req do quiz
+        fetch(`${API_URL}/quizz/${quizId}`,
+            {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            }
+        )
+            .then(res => { return res.json() })
+            .then(res => { setQuizToEdit(res); setCategoriaInicial(res.categoria) })
+
+        // req das perguntas do quiz
+        fetch(`${API_URL}/quizz/${quizId}/perguntas`,
+            {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            }
+        )
+            .then(res => { return res.json() })
+            .then(res => { setPerguntasCad(res); setPerguntasToDelete(res); setLoad(false) })
+
+    }, [token, quizId])
+
+
 
     const handleAddIconrretas = () => {
         if (altsIncorretas.length < 3) {
@@ -43,10 +75,10 @@ export default function CriarQuiz() {
             return
         }
 
-        setPerguntasCad([...perguntasCad, data]);
+        setPerguntasCad([...perguntasCad, data])
 
         setValidated(false);
-        setShowPerguntas(false);
+        setShowPerguntas(false)
         setAltsIncorretas([]);
 
     }
@@ -65,10 +97,12 @@ export default function CriarQuiz() {
 
         quizData.userId = userId;
         quizData.ativo = true;
-
+        
+        setLoad(true)
         try {
-            const res = await fetch(API_URL + "/quizz/cad", {
-                method: 'POST',
+            // req do cadastro de quiz
+            const res = await fetch(API_URL + "/quizz/edit/" + quizId, {
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
@@ -83,14 +117,30 @@ export default function CriarQuiz() {
             const novoQuiz = await res.json();
             const quizzId = novoQuiz.id;
 
+
+            for (const element of perguntasToDelete) {
+                const pergunta = {
+                    ...element
+                };
+                
+                await fetch(API_URL + "/pergunta/del/" + pergunta.id, {
+                    method: "DELETE",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(pergunta)
+                })
+            }
+            
+
             for (const element of perguntasCad) {
                 const pergunta = {
                     ...element,
                     quizzId: quizzId
                 };
 
-                console.log(pergunta)
-
+                // req dos cadastros das perguntas
                 await fetch(API_URL + "/pergunta/cad", {
                     method: "POST",
                     headers: {
@@ -98,14 +148,15 @@ export default function CriarQuiz() {
                         'Authorization': `Bearer ${token}`
                     },
                     body: JSON.stringify(pergunta)
-                });
+                })
+                .then(() => setLoad(false))
             }
 
         } catch (err) {
             console.error(err);
         }
 
-       navigate('/')
+        navigate('/')
     };
 
 
@@ -114,7 +165,7 @@ export default function CriarQuiz() {
             <Header />
 
             <Container className="col-11 col-md-10 mx-auto my-4 py-4">
-                <h2>Criar Quiz</h2>
+                <h2>Editar Quiz</h2>
                 <p>Adicione perguntas e respostas ao seu quiz e em seguida salve-o.</p>
             </Container>
 
@@ -129,22 +180,22 @@ export default function CriarQuiz() {
 
                             <Form.Group className="mb-3">
                                 <Form.Label><h6>Título do quiz</h6> </Form.Label>
-                                <Form.Control type="text" name="titulo" className="rounded-pill" placeholder="Adicione um titulo" required />
+                                <Form.Control type="text" name="titulo" className="rounded-pill" placeholder="Adicione um titulo" required defaultValue={quizToEdit.titulo} />
                             </Form.Group>
 
 
                             <Form.Group className="mb-3">
                                 <Form.Label><h6>Descrição do quiz</h6></Form.Label>
-                                <Form.Control as="textarea" name="descricao" className="rounded-4" rows={3} required />
+                                <Form.Control as="textarea" name="descricao" className="rounded-4" rows={3} required defaultValue={quizToEdit.descricao} />
                             </Form.Group>
 
                             <h6>Categoria do quiz</h6>
-                            <Form.Select name="categoria" className="rounded-pill" aria-label="Default select example" required>
+                            <select name="categoria" className="rounded-pill form-select" aria-label="Default select example" required value={categoriaInicial} onChange={(e) => { setCategoriaInicial(e.target.value) }}>
                                 <option value="">Selecione uma opção</option>
                                 {Object.keys(categorias).map(cat => (
                                     <option key={cat} value={cat}>{cat}</option>
                                 ))}
-                            </Form.Select>
+                            </select>
                         </Form>
 
 
@@ -208,16 +259,18 @@ export default function CriarQuiz() {
 
 
                         <ModalEstatico disabled={perguntasCad.length === 0}
-                            value='Criar'
-                            titulo='Confirmar salvamento'
+                            value='Editar'
+                            titulo='Confirmar edição'
                             onClick={handleSave}
                             show={showConfirmacao}
                             setShow={setShowConfirmacao}
                         >
-                            <h6>Deseja salvar o quiz?  </h6>
+                            {load === true ? <Loading/> : (<div>
+                                <h6>Deseja editar o quiz?  </h6>
                             <span>Clique em 'Salvar' e você será redirecionado a tela principal</span>
+                            </div>)}
                         </ModalEstatico>
-                        {perguntasCad.length === 0 && <span className="mx-auto text-black-50">Você precisa cadastrar ao menos um pergunta para criar o quiz.</span>}
+                        {perguntasCad.length === 0 && <span className="mx-auto text-black-50">Você precisa cadastrar ao menos um pergunta para Editar o quiz.</span>}
                     </Card>
 
 
@@ -235,6 +288,7 @@ export default function CriarQuiz() {
                     </Card>
                 </Row>
             </Container >
+            {load === true && <Loading className='position-absolute top-50 start-50 translate-middle'/>}
         </>
     )
 }

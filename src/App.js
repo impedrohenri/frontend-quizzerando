@@ -7,7 +7,7 @@ import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import EsqueceuSenha from './pages/EsqueceuSenha';
 import Perfil from './pages/Perfil';
-import { CriarQuiz, IniciarQuiz} from './pages/QuizPages';
+import { CriarQuiz, IniciarQuiz, EditarQuiz } from './pages/QuizPages';
 import { AuthProvider } from './contexts/AuthContexts';
 import PrivateRoutes from './Auth/PrivateRoutes';
 import HistoricoQuizzes from './pages/Historico';
@@ -31,7 +31,7 @@ function App() {
               <Route path="/historico" element={<HistoricoQuizzes />} />
               <Route path="/quiz/criar" element={<CriarQuiz />} />
               <Route path="/quiz/:id" element={<IniciarQuiz />} />
-              
+              <Route path="/quiz/editar/:quizId" element={<EditarQuiz />} />
             </Route>
 
             {/* Rota para 404 */}
